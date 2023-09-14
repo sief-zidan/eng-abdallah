@@ -64,7 +64,7 @@ export default class SolvedStudents extends Component {
     // console.log(data_to_send)
 
     axios
-      .post(basic.url + 'admin/select_who_solved.php', data_to_send)
+      .post(basic.url + 'doctor/home/select_who_solved.php', data_to_send)
       .then((res) => {
         if (res.status == 200) {
           // alert(JSON.stringify(res.data))
@@ -110,7 +110,7 @@ export default class SolvedStudents extends Component {
     this.setState({loading: true});
     axios
       .post(
-        basic.url + `admin/delete_solved_exam.php`,
+        basic.url + `doctor/home/delete_solved_exam.php`,
 
         data_to_send,
       )

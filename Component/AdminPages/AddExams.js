@@ -143,7 +143,7 @@ export default class AddExam extends Component {
         exam_generation_id: this.state.generation_selected_index,
         subject_id: this.state.subject_id,
       };
-      axios.post(basic.url + `admin/add_exam.php`, data_to_send).then((res) => {
+      axios.post(basic.url + `doctor/home/add_exam.php`, data_to_send).then((res) => {
         if (res.status == 200) {
           if (res.data == 'success') {
             this.setState({isChange: true});
@@ -209,10 +209,10 @@ export default class AddExam extends Component {
       };
 
       console.log(data_to_send);
-      console.log(basic.url + `admin/edit_exam.php`);
+      console.log(basic.url + `doctor/home/edit_exam.php`);
 
       axios
-        .post(basic.url + `admin/edit_exam.php`, data_to_send)
+        .post(basic.url + `doctor/home/edit_exam.php`, data_to_send)
         .then((res) => {
           console.log(res.data);
 
@@ -270,7 +270,7 @@ export default class AddExam extends Component {
         subject_id: this.state.subject_id,
       };
 
-      axios.post(basic.url + `admin/add_quiz.php`, data_to_send).then((res) => {
+      axios.post(basic.url + `doctor/home/add_quiz.php`, data_to_send).then((res) => {
         if (res.status == 200) {
           if (res.data == 'success') {
             this.setState({isChange: true});
@@ -326,7 +326,7 @@ export default class AddExam extends Component {
       };
 
       axios
-        .post(basic.url + `admin/edit_quiz.php`, data_to_send)
+        .post(basic.url + `doctor/home/edit_quiz.php`, data_to_send)
         .then((res) => {
           if (res.status == 200) {
             if (res.data == 'success') {

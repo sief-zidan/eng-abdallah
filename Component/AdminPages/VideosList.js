@@ -393,10 +393,10 @@ export default class ChainVideosList extends React.Component {
     };
 
     console.log(JSON.stringify(data_to_send));
-    console.log(basic.url + 'admin/select_videos.php');
+    // console.log(basic.url + 'admin/select_videos.php');
 
     axios
-      .post(basic.url + 'admin/select_videos.php', data_to_send)
+      .post(basic.url + 'doctor/home/select_videos.php', data_to_send)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -500,145 +500,21 @@ export default class ChainVideosList extends React.Component {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <Text
+            {/* <Text
               numberOfLines={1}
               style={{fontFamily: 'Janna LT Bold', fontSize: 16}}>
               {item.video_price} LE
-            </Text>
+            </Text> */}
             <View style={{flexDirection: 'row'}}>
               <Text
                 numberOfLines={1}
                 style={{fontFamily: 'Janna LT Bold', fontSize: 16}}>
                 {item.view_count}
               </Text>
-              <Icon
-                name={'eye'}
-                style={{
-                  fontSize: 20,
-                  color: '#385898',
-                  // marginTop: 10,
-                  marginRight: 30,
-                  alignSelf: 'center',
-                }}
-              />
+              
             </View>
           </View>
-          <View
-            style={{
-              width: '100%',
-              alignItems: 'center',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                this.deleteVideo(index);
-              }}
-              style={{
-                width: 20,
-                height: 20,
-                // backgroundColor:"#f00"
-              }}
-              disabled={item.deleteLoading}>
-              {item.deleteLoading ? (
-                <Spinner
-                  color="#f07f"
-                  size={20}
-                  style={{
-                    alignSelf: 'center',
-                    padding: 0,
-                    marginTop: -30,
-                  }}
-                />
-              ) : (
-                <Icon
-                  name="trash-alt"
-                  style={{
-                    fontSize: 24,
-                    color: '#f07f',
-                    // marginTop: 10,
-                    // alignSelf: 'center',
-                    // marginRight:30
-                  }}
-                />
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({
-                  addOreditVideo: 'edit',
-                  visableAddVideo: true,
-                  selectedItem: item,
-                  selectedItemIndex: index,
-                  video_title: item.video_title,
-                  video_description: item.video_description,
-                  viemo_id: item.video_player_id,
-                });
-              }}
-              style={{
-                width: 20,
-                height: 20,
-                // backgroundColor:"#f00"
-              }}
-              disabled={item.editLoading}>
-              {item.editLoading ? (
-                <Spinner
-                  color="#f07f41"
-                  size={20}
-                  style={{
-                    alignSelf: 'center',
-                    padding: 0,
-                    marginTop: -30,
-                  }}
-                />
-              ) : (
-                <Icon
-                  name="edit"
-                  style={{
-                    fontSize: 24,
-                    color: '#f07f41',
-                    // marginTop: 10,
-                    // alignSelf: 'center',
-                    // marginRight:30
-                  }}
-                />
-              )}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => {
-                this.update_show_video(index);
-              }}
-              style={{
-                width: 20,
-                height: 20,
-                // backgroundColor:"#f00"
-              }}
-              disabled={this.state.loading_lock[index] ? true : false}>
-              {this.state.loading_lock[index] ? (
-                <Spinner
-                  color="#385898"
-                  size={20}
-                  style={{
-                    alignSelf: 'center',
-                    padding: 0,
-                    marginTop: -30,
-                  }}
-                />
-              ) : (
-                <Icon
-                  name={item.show == 0 ? 'lock' : 'lock-open'}
-                  style={{
-                    fontSize: 20,
-                    color: '#385898',
-                    // marginTop: 10,
-                    // alignSelf: 'center',
-                    // marginRight:30
-                  }}
-                />
-              )}
-            </TouchableOpacity>
-          </View>
+       
         </View>
       </TouchableOpacity>
     );
@@ -696,7 +572,7 @@ export default class ChainVideosList extends React.Component {
             )}
           </View>
         </ScrollView>
-        {this.state.isPageLoading == false &&
+        {/* {this.state.isPageLoading == false &&
         (this.state.thereIsVideos == true ||
           this.state.thereIsVideos == false) ? (
           <TouchableOpacity
@@ -718,7 +594,7 @@ export default class ChainVideosList extends React.Component {
             }}>
             <Ionicons name="add" color="#fff" size={28} />
           </TouchableOpacity>
-        ) : null}
+        ) : null} */}
 
         {/*   --------------------------------------------   */}
 

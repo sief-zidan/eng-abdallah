@@ -62,7 +62,7 @@ export default class NotSolvedStudents extends Component {
     // console.log(data_to_send)
 
     axios
-      .post(basic.url + 'admin/select_who_not_solved.php', data_to_send)
+      .post(basic.url + 'doctor/home/select_who_not_solved.php', data_to_send)
       .then((res) => {
         if (res.status == 200) {
           // console.log(res.data)

@@ -78,23 +78,23 @@ export default class ClassPage extends Component {
 
   getSubjects() {
     let data_to_send = {
-      generation_id: this.state.item.generation_id,
+      genration_id: this.state.item.generation_id,
     };
     axios
-      .post(basic.url + 'select_subject_forAdmin.php', data_to_send)
+      .post(basic.url + 'doctor/home/select_subject_for_doctor.php ', data_to_send)
       .then((res) => {
-        // console.log(res.data)
+        console.log(res.data)
         if (res.status == 200) {
-          if (Array.isArray(res.data.subject)) {
-            if (res.data.subject.length == 0) {
+          if (Array.isArray(res.data)) {
+            if (res.data.length == 0) {
               this.setState({
                 subData: [],
                 subId: '',
               });
             } else {
               this.setState({
-                subData: res.data.subject,
-                subId: res.data.subject[0].subject_id,
+                subData: res.data,
+                subId: res.data[0].subject_id,
               });
             }
           }
@@ -117,8 +117,8 @@ export default class ClassPage extends Component {
   _refreshPages() {
     axios.get(basic.url + 'select_generations.php').then((res) => {
       this.setState({disabled: false});
-      this.setState({data: res.data.gens});
-      let array = res.data.gens;
+      this.setState({data: res.data});
+      let array = res.data;
       let Number = 0;
       let NumberPending = 0;
       for (let i = 0; i < array.length; i++) {
@@ -143,11 +143,11 @@ export default class ClassPage extends Component {
   // }
   getgenedata() {
     this.setState({disabled: true});
-    axios.get(basic.url + 'select_generations.php').then((res) => {
-      // alert(JSON.stringify(res.data))
+    axios.get(basic.url + 'student/authentication/select_generations.php').then((res) => {
+      console.log(JSON.stringify(res.data))
       this.setState({disabled: false});
-      this.setState({data: res.data.gens});
-      let array = res.data.gens;
+      this.setState({data: res.data});
+      let array = res.data;
       let Number = 0;
       let NumberPending = 0;
       for (let i = 0; i < array.length; i++) {
@@ -563,7 +563,7 @@ export default class ClassPage extends Component {
               });
             }}
             style={{
-              height: height /1.8,
+              height: height /2.2,
               // maxHeight: height / 1.2,
               // borderTopRightRadius: 15,
               // borderTopLeftRadius: 15,
@@ -632,7 +632,7 @@ export default class ClassPage extends Component {
                 <Text style={{fontSize: 18}}>مسح</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{flexDirection: 'row', marginBottom: 20}}
                 onPress={() => {
                   this.props.navigation.navigate('Students', {
@@ -651,34 +651,17 @@ export default class ClassPage extends Component {
                 </View>
 
                 <Text style={{fontSize: 18}}>جميع الطلاب</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
 
 
-              <TouchableOpacity
-                style={{flexDirection: 'row', marginBottom: 20}}
-                onPress={() => {
-                  this.props.navigation.navigate('Subject', {
-                    generation_id: this.state.item.generation_id,
-                    collection_id: -1,
-                  });
-                  this.setState({modalVisible2: false});
-                }}>
-                <View style={{width: '15%', alignItems: 'flex-start'}}>
-                  <Icon
-                    name="book"
-                    size={25}
-                    style={{color: '#984989', marginLeft: 5}}
-                  />
-                </View>
-                <Text style={{fontSize: 18}}>قائمة الاسابيع</Text>
-              </TouchableOpacity>
+            
 
 
 
 
 
-              <TouchableOpacity
+               <TouchableOpacity
                 style={{flexDirection: 'row', marginBottom: 20}}
                 onPress={() => {
                   this.setState({
@@ -699,7 +682,7 @@ export default class ClassPage extends Component {
                 </View>
 
                 <Text style={{fontSize: 18}}> قائمة الامتحانات</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> 
               {/* <TouchableOpacity
                 style={{flexDirection: 'row', marginBottom: 20}}
                 onPress={() => {
@@ -764,7 +747,7 @@ export default class ClassPage extends Component {
                 <Text style={{fontSize: 18}}>قائمة الملخصات</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{flexDirection: 'row', marginBottom: 20}}
                 onPress={() => {
                   this.setState({
@@ -785,7 +768,7 @@ export default class ClassPage extends Component {
                 </View>
 
                 <Text style={{fontSize: 18}}> اللينكات</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
 
               <TouchableOpacity
@@ -881,6 +864,7 @@ export default class ClassPage extends Component {
                   onPress={() => {
                     if (this.state.subId != '') {
                       if (this.state.navReson == 'exams') {
+                        console.log(this.state.subId)
                         this.props.navigation.navigate('ListOfExams', {
                           generation_id: this.state.item.generation_id,
                           collection_id: -1,
@@ -944,7 +928,7 @@ export default class ClassPage extends Component {
               </TouchableWithoutFeedback>
             </View>
           </Modal>
-          {!this.state.modalVisible2 ? (
+          {/* {!this.state.modalVisible2 ? (
             <Fab
               direction="up"
               // containerStyle={{}}
@@ -960,7 +944,7 @@ export default class ClassPage extends Component {
               }>
               <Icon name="plus" style={{fontSize: 30}} color="#FFF" />
             </Fab>
-          ) : null}
+          ) : null} */}
         </Container>
       </Root>
     );

@@ -82,7 +82,7 @@ export default class ExamReport extends React.Component {
     };
     // console.log(data_to_send)
     axios
-      .post(basic.url + `admin/select_exam_info.php`, data_to_send)
+      .post(basic.url + `doctor/home/select_exam_info.php`, data_to_send)
       .then((res) => {
         if (res.status == 200) {
           console.log(res.data);

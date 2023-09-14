@@ -55,7 +55,7 @@ export default class SummaryList extends React.Component {
       subject_id: this.state.subject_id,
     };
     // console.log(data_to_send);
-    axios.post(basic.url + `select_summary.php`, data_to_send).then((res) => {
+    axios.post(basic.url + `student/home/select_summary.php`, data_to_send).then((res) => {
       if (res.status == 200) {
         // console.log(JSON.stringify(res.data));
         if (res.data != 'error') {

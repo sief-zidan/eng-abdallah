@@ -35,7 +35,7 @@ import DocumentPicker from 'react-native-document-picker';
 const {width, height} = Dimensions.get('window');
 var BUTTONS = [
   {icon: 'ios-document', text: 'تعديل الامتحان', iconColor: '#080'},
-  {icon: 'ios-document-text-sharp', text: 'رفع الامتحان', iconColor: '#080'},
+  // {icon: 'ios-document-text-sharp', text: 'رفع الامتحان', iconColor: '#080'},
   {icon: 'ios-document', text: 'تقرير الطلاب', iconColor: '#2c8ef4'},
   {text: 'نتائج الطلاب', icon: 'md-document', iconColor: '#ea943b'},
   {text: 'من لم يحل', icon: 'md-document', iconColor: '#00f'},
@@ -94,7 +94,7 @@ export default class ListOfExams extends React.Component {
     };
 
     axios
-      .post(basic.url + `admin/delete_exam.php`, data_to_send)
+      .post(basic.url + `doctor/home/delete_exam.php`, data_to_send)
       .then((res) => {
         this.setState({loading: true});
         if (res.status == 200) {
@@ -144,12 +144,12 @@ export default class ListOfExams extends React.Component {
       collection_id: collection_id,
       subject_id: this.state.subject_id,
     };
-    // alert(JSON.stringify(data_to_send))
+    console.log(JSON.stringify(data_to_send))
     axios
-      .post(basic.url + `admin/select_total_exams.php`, data_to_send)
+      .post(basic.url + `doctor/home/select_total_exams.php`, data_to_send)
       .then((res) => {
         if (res.status == 200) {
-          // alert(JSON.stringify(res.data))
+          console.log(JSON.stringify(res.data))
           if (res.data != 'error') {
             if (res.data.exams.length > 0) {
               this.setState({
@@ -190,7 +190,7 @@ export default class ListOfExams extends React.Component {
     };
     // console.log(data_to_send)
     axios
-      .post(basic.url + `admin/update_exam_show_to_public.php`, data_to_send)
+      .post(basic.url + `doctor/home/update_exam_show_to_public.php`, data_to_send)
       .then((res) => {
         if (res.status == 200) {
           // console.log(res.data)
@@ -219,19 +219,19 @@ export default class ListOfExams extends React.Component {
     this.setState({loading_answer: load});
     let list = this.state.exams;
     let data_to_send = {
-      // exam_id: 'Exam_' + list[pu_exam_id].exam_id,
-      exam_id: list[pu_exam_id].exam_id,
+      exam_id: 'Exam_' + list[pu_exam_id].exam_id,
+      // exam_id: list[pu_exam_id].exam_id,
 
       generation_id: generation_id,
-      collection_id: collection_id,
-      subject_id: this.state.subject_id,
+      collection_id: this.state.subject_id,
+      // subject_id: this.state.subject_id,
 
       value: list[pu_exam_id].show_to_answer == 0 ? 1 : 0,
     };
     // alert(JSON.stringify(data_to_send))
     console.log(data_to_send);
     axios
-      .post(basic.url + `admin/update_exam_show_to_answer.php`, data_to_send)
+      .post(basic.url + `doctor/home/update_exam_show_to_answer.php`, data_to_send)
       .then((res) => {
         if (res.status == 200) {
           console.log(res.data);
@@ -447,9 +447,11 @@ export default class ListOfExams extends React.Component {
 
                                     // scroll_to_index: this.scroll_to_index,
                                   });
-                                } else if (buttonIndex == 1) {
-                                  this.uploadExcelFile(item);
-                                } else if (buttonIndex == 2) {
+                                } 
+                                // else if (buttonIndex == 1) {
+                                //   this.uploadExcelFile(item);
+                                // } 
+                                else if (buttonIndex ==1 ) {
                                   this.props.navigation.navigate('ExamReport', {
                                     exam_id: item.exam_id,
                                     generation_id: this.state.generation_id,
@@ -460,7 +462,7 @@ export default class ListOfExams extends React.Component {
                                     ),
                                     subject_id: this.state.subject_id,
                                   });
-                                } else if (buttonIndex == 3) {
+                                } else if (buttonIndex == 2) {
                                   this.props.navigation.navigate(
                                     'SolvedStudents',
                                     {
@@ -472,7 +474,7 @@ export default class ListOfExams extends React.Component {
                                       subject_id: this.state.subject_id,
                                     },
                                   );
-                                } else if (buttonIndex == 4) {
+                                } else if (buttonIndex == 3) {
                                   this.props.navigation.navigate(
                                     'NotSolvedStudents',
                                     {
@@ -485,7 +487,7 @@ export default class ListOfExams extends React.Component {
                                       subject_id: this.state.subject_id,
                                     },
                                   );
-                                } else if (buttonIndex == 5) {
+                                } else if (buttonIndex == 4) {
                                   this.props.navigation.navigate(
                                     'ExamQuestions',
                                     {
@@ -496,7 +498,7 @@ export default class ListOfExams extends React.Component {
                                       subject_id: this.state.subject_id,
                                     },
                                   );
-                                } else if (buttonIndex == 6) {
+                                } else if (buttonIndex == 5) {
                                   this.alert_delete(index, item.exam_name);
                                 }
                               },

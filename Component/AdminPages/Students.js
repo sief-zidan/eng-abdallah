@@ -152,7 +152,7 @@ export default class Students extends Component {
     };
 
     axios
-      .post(basic.url + 'admin/select_students.php', data_to_send)
+      .get(basic.url + 'doctor/home/get_all_student.php')
 
       .then((res) => {
         if (res.status == 200) {
@@ -186,7 +186,7 @@ export default class Students extends Component {
     };
 
     axios
-      .post(basic.url + 'admin/select_students.php', data_to_send)
+      .get(basic.url + 'doctor/home/get_all_student.php')
       .then((res) => {
         // alert(JSON.stringify(res.data))
 
@@ -571,8 +571,8 @@ export default class Students extends Component {
             <Spinner color={color} size={40} style={{marginTop: 200}} />
           ) : (
             <Headroom
-              style={styles.container}
-              style={{width: '100%'}}
+              style={{...styles.container,width:"100%"}}
+              // styale={{width: '100%'}}
               headerComponent={header}
               ScrollableComponent={ScrollView}
               headerHeight={80}

@@ -64,7 +64,7 @@ export default class AddSummery extends Component {
 
       //Please change file upload URL
       // console.log(basic.url + 'admin/upload_file.php');
-      let res = await fetch(basic.url + 'admin/upload_file.php', {
+      let res = await fetch(basic.url + 'doctor/home/upload_file.php', {
         method: 'post',
         body: data,
         headers: {

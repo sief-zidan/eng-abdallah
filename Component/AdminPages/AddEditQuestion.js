@@ -133,7 +133,7 @@ export default class AddEditQuestion extends Component {
       }
       RNFetchBlob.fetch(
         'POST',
-        basic.url + `admin/add_ques.php`,
+        basic.url + `doctor/home/add_ques.php`,
         {
           Authorization: 'Bearer access-token',
           otherHeader: 'foo',
@@ -238,7 +238,7 @@ export default class AddEditQuestion extends Component {
 
       RNFetchBlob.fetch(
         'POST',
-        basic.url + `admin/edit_ques.php`,
+        basic.url + `doctor/home/edit_ques.php`,
         {
           Authorization: 'Bearer access-token',
           otherHeader: 'foo',

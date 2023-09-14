@@ -25,7 +25,7 @@ export default class HomePage extends React.Component {
   }
   componentDidMount() {
     axios.get(basic.url + 'select_generations.php').then((res) => {
-      let array = res.data.gens;
+      let array = res.data;
       let Number = 0;
       let NumberPending = 0;
       for (let i = 0; i < array.length; i++) {
@@ -91,12 +91,13 @@ export default class HomePage extends React.Component {
               flexDirection: 'row',
             }}
             onPress={() =>
-              this.props.navigation.navigate('Students', {
-                generation_id: 'no',
-                collectiont_id: 'no',
-                status: 'approved',
-                NumberOfStudent: this.state.AllStudents,
-              })
+              // this.props.navigation.navigate('Students', {
+              //   generation_id: 'no',
+              //   collectiont_id: 'no',
+              //   status: 'approved',
+              //   NumberOfStudent: this.state.AllStudents,
+              // })
+              alert("قيد التنفيذ")
             }>
             <View
               style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

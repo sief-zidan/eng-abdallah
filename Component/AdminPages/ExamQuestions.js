@@ -184,7 +184,7 @@ export default class ExamQuestions extends Component {
       subject_id: this.state.subject_id,
     };
     axios
-      .post(basic.url + `admin/select_questions.php`, data_to_send)
+      .post(basic.url + `doctor/home/select_questions.php`, data_to_send)
       .then((res) => {
         if (res.status == 200) {
           if (res.data != 'error') {
@@ -240,7 +240,7 @@ export default class ExamQuestions extends Component {
     };
 
     axios
-      .post(basic.url + `admin/delete_question.php`, data_to_send)
+      .post(basic.url + `doctor/home/delete_question.php`, data_to_send)
       .then((res) => {
         if (res.data != 'error') {
           const OriginalArray = this.state.questions;
